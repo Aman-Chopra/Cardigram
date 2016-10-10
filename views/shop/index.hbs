@@ -1,0 +1,36 @@
+
+
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
+        <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+            {{ successMsg }}
+        </div>
+    </div>
+</div>
+
+
+{{# each products  }}
+  <div class="row">
+    {{# each this}}
+    <div class="col-sm-6 col-md-4">
+      <!-- col-md-4 means in a medium sized screen, each column would occupy 4 blocks of total 12 blocks, so three columns will be there-->
+      <div class="thumbnail">
+        <!--<img src=" imagefiles/Demo_bg.jpg" class = "img-responsive" alt="Image cannot be loaded.">-->
+        <img src="{{this.imagePath}}" class = "img-responsive" alt="Image cannot be loaded.">
+        <!--img-responsive is a bootstrap class-->
+        <div class="caption">
+          <h3>{{this.title}}</h3>
+          <p class = "description" >{{this.description}}</p>
+          <div class = "clearfix">
+            <!-- A helper class to fix all the floats going on.-->
+            <div class = "price pull-left">
+              Rs.{{this.price}}
+            </div>
+            <a href="/add/{{this._id}}" class="btn btn-success pull-right" role="button">Button</a> </div>
+            <!-- pull right is the default bootstrap helper class which lets float something to the right-->
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+{{/each}}
