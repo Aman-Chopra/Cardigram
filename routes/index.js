@@ -5,6 +5,9 @@ var Cart = require('../models/cart');
 //var products = Product.find();finding is asynchronous so we require a callback
 var Product = require('../models/product');//importing product model
 var Order = require('../models/order');
+var Customer = require('../models/customer');
+var fs    = require("fs");
+var driverChunks = [];
 
 router.get('/', function(req, res, next) {
   var successMsg = req.flash('success')[0];
@@ -17,6 +20,117 @@ router.get('/', function(req, res, next) {
     res.render('shop/index', { title: 'Cardigram' , products: productChunks , successMsg: successMsg , noMessages: !successMsg});
   });
 });
+
+
+router.get('/dashboard', function(req, res, next) {
+    res.render('shop/dashboard', { title: 'Dashboard'});
+  });
+
+
+  router.get('/yolo', function(req, res, next) {
+
+var dir = './public/uploads/tmp';
+console.log("hi");
+if (!fs.existsSync(dir)){
+  console.log("hi");
+    fs.mkdirSync(dir);
+}
+
+      res.render('shop/dashboard', { title: 'Dashboard'});
+    });
+
+router.get('/table', function (req, res, next) {
+    Customer.find(function(err, docs){
+      var customerChunks = [];
+      for(var i = 0; i < docs.length; i++){
+        customerChunks.push(docs.slice(i,i+1));
+      }
+      console.log(customerChunks);
+      res.render('shop/table', { title: 'Tables' , customers: customerChunks});
+  });
+});
+
+router.get('/try', function (req, res, next) {
+      res.render('shop/try');
+});
+
+
+
+router.get('/getcharts', function (req, res, next) {
+      res.render('shop/charts', { title: 'Charts'});
+  });
+
+
+
+
+router.get('/charts', function (req, res, next) {
+    Customer.find(function(err, docs){
+      var customerChunks = [];
+      for(var i = 0; i < docs.length; i++){
+        customerChunks.push(docs.slice(i,i+1));
+      }
+      console.log(customerChunks);
+      var jsonObj = {
+        data : []
+    };
+    var temp = {
+    labels : [],
+    series : [[]]
+  }
+
+      for(var i = 0; i < customerChunks.length; i++) {
+          temp.labels.push(customerChunks[i][0]["Name"]);
+          var temp1 = customerChunks[i][0]["Value1"];
+          temp.series[0].push(temp1);
+          jsonObj.data.push(temp);
+      }
+      console.log(jsonObj);
+      var toBeSentData = JSON.stringify(jsonObj);
+      res.writeHead(200, {"Content-Type": "text/plain"});
+      res.end(toBeSentData);
+      console.log("string sent");
+  });
+});
+
+router.post('/name', function (req, res) {
+    Customer.find(function(err, docs){
+      var j = 0;
+      for(var i = 0; i < docs.length; i++){
+        if(docs[i]._id==req.body.selected[j]){
+        driverChunks.push(docs[i]);
+        j++;
+      }
+      }
+    })
+  });
+
+  router.get('/name', function (req, res) {
+      var jsonObj = {
+        data : []
+    };
+    var temp = {
+    labels: [],
+    series : [[]]
+  }
+
+      for(var i = 0; i < driverChunks.length; i++) {
+          temp.labels.push(driverChunks[i]["Name"]);
+          var temp1 = driverChunks[i]["Value1"];
+          temp.series[0].push(temp1);
+      }
+      jsonObj.data.push(temp);
+      console.log(temp);
+      console.log(jsonObj);
+      var toBeSentData = JSON.stringify(jsonObj);
+      res.writeHead(200, {"Content-Type": "text/plain"});
+      res.end(toBeSentData);
+      console.log("string sent");
+      driverChunks = [];
+});
+
+router.get('/forms', isLoggedIn, function (req, res, next) {
+        res.render('shop/forms', { title: 'Forms'});
+    });
 
 router.get('/add/:id', function(req, res, next) {
     var productId = req.params.id;
@@ -104,6 +218,45 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
           res.redirect('/');
         });
     });
+});
+
+router.post('/upload', function(req, res) {
+    req.pipe(req.busboy);
+    req.busboy.on('file', function(fieldname, file, filename) {
+        var fstream = fs.createWriteStream('./public/uploads/' + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            res.send('upload succeeded!');
+        });
+    });
+});
+
+router.get('/uploads/:file', function (req, res){
+  var path=require('path');
+    file = req.params.file;
+    var dirname = path.resolve(".")+'/public/uploads/';
+    var img = fs.readFileSync(dirname  + file);
+    res.writeHead(200, {'Content-Type': 'image/jpg' });
+    res.end(img, 'binary');
+
+});
+
+router.get('/download', function(req, res) { // create download route
+  var path=require('path'); // get path
+  var dir=path.resolve(".")+'/public/uploads/'; // give path
+    fs.readdir(dir, function(err, list) { // read directory return  error or list
+    if (err) return res.json(err);
+    else
+                res.json(list);
+                });
+});
+
+router.get('/:file(*)', function(req, res, next){ // this routes all types of file
+  var path=require('path');
+  var file = req.params.file;
+  var path = path.resolve(".")+'/public/uploads/'+file;
+  console.log(path);
+  res.download(path); // magic of download fuction
 });
 
 

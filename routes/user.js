@@ -1,16 +1,12 @@
 //For route grouping
-
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var csrf = require('csurf');
-
 var csrfProtection = csrf();//using protection as a middleware
 router.use(csrfProtection);//All the routers are protected using this csrf protection
 var Order = require('../models/order');
 var Cart = require('../models/cart');
-
-
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
     Order.find({user: req.user}, function(err, orders) {

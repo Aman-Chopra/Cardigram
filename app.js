@@ -11,7 +11,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-
+var busboy = require('connect-busboy');
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
 
@@ -30,7 +30,12 @@ app.set('view engine', '.hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(busboy());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/tablejs",express.static(__dirname+"/node_modules/tablefilter/dist/tablefilter"));
+app.use("/tablecss",express.static(__dirname+"/node_modules/tablefilter/dist/tablefilter/style"));
+app.use("/chartlib",express.static(__dirname+"/node_modules/chartist/dist"));
+app.use("/process",express.static(__dirname+"/PHP_files"));
 app.use(validator());//This has to be done after the body is parsed.
 app.use(cookieParser());
 app.use(session({

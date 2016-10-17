@@ -1,0 +1,210 @@
+<link rel='stylesheet' href='/stylesheets/dashboard.css' />
+<script src= "https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<div id="wrapper">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/dashboard">Cardigram</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/getcharts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <li class="active">
+                        <a href="/table"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+                    <li>
+                        <a href="/forms"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Tables
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html"><b>Dashboard</b></a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Tables
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+<div class="row">
+        <div class="col-lg-12">
+              <h2>Customer data.</h2>
+<div class="table-responsive">
+<table id="demo" class="table table-condensed table-hover table-bordered sortable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Value1</th>
+            <th>Value2</th>
+            <th>Value3</th>
+            <th>Value4</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          {{# each customers  }}
+            {{# each this}}
+            <td>{{this._id}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{this.Value1}}</td>
+            <td>{{this.Value2}}</td>
+            <td>{{this.Value3}}</td>
+            <td>{{this.Value4}}</td>
+        </tr>
+        {{/each}}
+      {{/each}}
+    </tbody>
+
+</table>
+  <button type="button" name="OK" class="ok btn btn-warning button">Generate charts</button>
+
+</div>
+</div>
+</div>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Analysis</h4>
+      </div>
+      <div class="modal-body">
+        <p class="input-sm" id="txtfname"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id = "closebutton" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<br>
+<div id="chartDiv"  style="display:none;" class="ct-chart4"></div>
+
+</div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+    <script>
+    /*$('table tbody tr  td').on('click',function(){
+        $("#myModal").modal("show");
+        $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+
+        $("#txtlname").val($(this).closest('tr').children()[1].textContent);
+    });*/
+    $("#demo tr").click(function(){
+   $(this).toggleClass('selected');
+   var value=$(this).find('td:first').html();
+});
+
+$('#closebutton').on('click', function(e) {
+  $('tr').removeClass("selected");
+})
+$('.ok').on('click', function(e){
+  var jsonObj = {
+    selected : []
+};
+    $("#demo tr.selected").each(function(){
+        jsonObj.selected.push($('td:first', this).html());
+    });
+    if(jsonObj.selected.length==0){
+      $("#myModal").modal("show");
+      document.getElementById("txtfname").innerHTML = "Please select customers to compare.";
+    }
+    else if(jsonObj.selected.length>5){
+      $("#myModal").modal("show");
+      document.getElementById("txtfname").innerHTML = "Cannot select more than five entities.";
+  }
+  else{
+    $('tr').removeClass("selected");
+    $.ajax({
+    type:"post",
+    url:"/name",
+    dataType: 'json',
+        data: JSON.stringify(jsonObj),
+        contentType: 'application/json',
+        success: function(data){
+           alert("success");
+           alert(data);
+    }
+});
+jsonObj.selected=[];
+    rendergraph();
+  }
+});
+    </script>
+    <script type="text/javascript" src="javascripts/charts.js"></script>
+    <script>
+    function rendergraph() {
+    document.getElementById('chartDiv').style.display = "block";
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/name", true);
+    xmlhttp.responseType = 'json';
+    xmlhttp.onreadystatechange = function() {
+    if(xmlhttp.status == 200) {
+    var data = xmlhttp.response;
+    console.log(data.data[0]);
+    drawChart4(data.data[0]);
+    }
+    }
+    xmlhttp.send();
+    console.log("Request was sent to server");
+    }
+    </script>
+<script type="text/javascript" src="javascripts/table.js"></script>

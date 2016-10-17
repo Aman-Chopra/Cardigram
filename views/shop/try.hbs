@@ -1,0 +1,41 @@
+
+
+    <p>Welcome</p>
+        <form method='post' action='upload' enctype="multipart/form-data">
+        <input type='file' name='fileUploaded' id='uploadFile'>
+        <input type='submit'>
+
+
+</form>
+
+
+<br>
+<br>
+<script type="text/javascript" src="javascripts/global.js"></script>
+
+<div id = "download" class="table-responsive">
+<table class="table table-condensed table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+    </div>
+    <script>
+    $('form').submit(function(){
+      console.log("Hello");
+       if(!$('input[type="file"]').val()) {
+
+            // No file is uploaded, do not submit.
+            return false;
+        }
+        else {
+            return true;
+        }
+    });
+
+        </script>

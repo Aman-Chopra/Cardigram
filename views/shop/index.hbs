@@ -1,36 +1,619 @@
+<link rel="stylesheet" href="/stylesheets/jquery.fancybox.css">
+		<!-- animate -->
+        <link rel="stylesheet" href="/stylesheets/animate.css">
+		<!-- Main Stylesheet -->
+        <link rel="stylesheet" href="/stylesheets/main.css">
+		<!-- media-queries -->
+        <link rel="stylesheet" href="/stylesheets/media-queries.css">
+
+		<!-- Modernizer Script for old Browsers -->
+        <script src="javascripts/modernizr-2.6.2.min.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="imagefiles/Favi.ico" />
 
 
-<div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
-        <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
-            {{ successMsg }}
-        </div>
-    </div>
-</div>
+<!-- preloader -->
+		<div id="preloader">
+			<img src="imagefiles/preloader.gif" alt="Preloader">
+		</div>
+		<!-- end preloader -->
 
+        <!--
+        Fixed Navigation
+        ==================================== -->
+        <header id="navigation" class="navbar-fixed-top navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars fa-2x"></i>
+                    </button>
+					<!-- /responsive nav button -->
 
-{{# each products  }}
-  <div class="row">
-    {{# each this}}
-    <div class="col-sm-6 col-md-4">
-      <!-- col-md-4 means in a medium sized screen, each column would occupy 4 blocks of total 12 blocks, so three columns will be there-->
-      <div class="thumbnail">
-        <!--<img src=" imagefiles/Demo_bg.jpg" class = "img-responsive" alt="Image cannot be loaded.">-->
-        <img src="{{this.imagePath}}" class = "img-responsive" alt="Image cannot be loaded.">
-        <!--img-responsive is a bootstrap class-->
-        <div class="caption">
-          <h3>{{this.title}}</h3>
-          <p class = "description" >{{this.description}}</p>
-          <div class = "clearfix">
-            <!-- A helper class to fix all the floats going on.-->
-            <div class = "price pull-left">
-              Rs.{{this.price}}
+					<!-- logo -->
+                    <a class="navbar-brand" href="#body">
+						<h1 id="logo" class = "beat">
+
+							<img src="imagefiles/C_logo.png" alt="Cardigram">
+						</h1>
+					</a>
+					<!-- /logo -->
+                </div>
+
+				<!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <ul id="nav" class="nav navbar-nav">
+                        <li class="current"><a href="#body">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#works">Work</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Sign in</a></li>
+                    </ul>
+                </nav>
+				<!-- /main nav -->
+
             </div>
-            <a href="/add/{{this._id}}" class="btn btn-success pull-right" role="button">Button</a> </div>
-            <!-- pull right is the default bootstrap helper class which lets float something to the right-->
-        </div>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-{{/each}}
+        </header>
+
+
+
+
+        <!--
+        End Fixed Navigation
+        ==================================== -->
+
+
+
+        <!--
+        Home Slider
+        ==================================== -->
+
+		<section id="slider">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators bullet -->
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				</ol>
+				<!-- End Indicators bullet -->
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+
+					<!-- single slide -->
+					<div class="item active" style="background-image: url(imagefiles/pulse.gif);">
+						<div class="carousel-caption">
+							<h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">Meet<span> Cardigram</span>!</h2>
+							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color">Gensini Score Predictor</span></h3>
+							<p data-wow-duration="1000ms" class="wow slideInRight animated">A biomedical Ontology</p>
+
+							<ul class="social-links text-center">
+								<li><a href="https://twitter.com/cardigram" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="https://www.facebook.com/mitcardigram/" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href="https://github.com/Aman-Chopra/Cardigram" target="_blank"><i class="fa fa-github fa-lg"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- end single slide -->
+
+					<!-- single slide -->
+					<div class="item" style="background-image: url(imagefiles/banner.jpg);">
+						<div class="carousel-caption">
+							<h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">Machine<span> Learning</span>!</h2>
+							<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">Graphical Representation of Data</span></h3>
+							<p data-wow-duration="500ms" class="wow slideInRight animated">Statistical analysis</p>
+
+							<ul class="social-links text-center">
+								<li><a href="https://twitter.com/cardigram" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="https://www.facebook.com/mitcardigram/" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href="https://github.com/Aman-Chopra/Cardigram" target="_blank"><i class="fa fa-github fa-lg"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- end single slide -->
+
+				</div>
+				<!-- End Wrapper for slides -->
+
+			</div>
+		</section>
+
+        <!--
+        End Home SliderEnd
+        ==================================== -->
+
+        <!--
+        Features
+        ==================================== -->
+
+		<section id="features" class="features">
+			<div class="container">
+				<div class="row">
+
+					<div class="sec-title text-center mb50 wow bounceInDown animated" data-wow-duration="500ms">
+						<h2>Features</h2>
+						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+					</div>
+
+					<!-- service item -->
+					<div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
+						<div class="service-item">
+							<div class="service-icon">
+								<i class="fa fa-bar-chart fa-2x"></i>
+							</div>
+
+							<div class="service-desc">
+								<h3>Graphical Analysis</h3>
+								<p>The patients can see and compare their reports over the period of time using the graphs generated by us.</p>
+							</div>
+						</div>
+					</div>
+					<!-- end service item -->
+
+					<!-- service item -->
+					<div class="col-md-4 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
+						<div class="service-item">
+							<div class="service-icon">
+								<i class="fa fa-heart fa-2x"></i>
+							</div>
+
+							<div class="service-desc">
+								<h3>Gensini Score</h3>
+								<p>The patients can now predict their gensini score without going through the tedious process of cardiac imaging, all they have to do is upload their reports to our database and our machine learning algorithms will take care for the rest.</p>
+							</div>
+						</div>
+					</div>
+					<!-- end service item -->
+
+					<!-- service item -->
+					<div class="col-md-4 wow fadeInRight" data-wow-duration="500ms"  data-wow-delay="900ms">
+						<div class="service-item">
+							<div class="service-icon">
+								<i class="fa fa-database fa-2x"></i>
+							</div>
+
+							<div class="service-desc">
+								<h3>Personalize Database</h3>
+								<p>Patients can now have a personalized medical profile and a safe storehouse of all their medical data with Cardigram!</p>
+							</div>
+						</div>
+					</div>
+					<!-- end service item -->
+
+				</div>
+			</div>
+		</section>
+
+        <!--
+        End Features
+        ==================================== -->
+
+
+        <!--
+        Our Works
+        ==================================== -->
+
+		<section id="works" class="works clearfix">
+			<div class="container">
+				<div class="row">
+
+					<div class="sec-title text-center">
+						<h2>Works</h2>
+						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+					</div>
+
+					<div class="sec-sub-title text-center">
+						<p>We provide patients an efficient way to accumulate their data securely with cardigram. We provide better visualizations of the textual data and our machine learning algorithm predicts gensini score which tells the severity of heart diseases.</p>
+					</div>
+
+					<div class="work-filter wow fadeInRight animated" data-wow-duration="500ms">
+						<ul class="text-center">
+							<li><a href="javascript:;" data-filter="all" class="active filter">All</a></li>
+							<li><a href="javascript:;" data-filter=".analysis" class="filter">Analysis</a></li>
+							<li><a href="javascript:;" data-filter=".prediction" class="filter">Prediction</a></li>
+							<li><a href="javascript:;" data-filter=".ml" class="filter">Machine learning</a></li>
+							<li><a href="javascript:;" data-filter=".database" class="filter">Database</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="project-wrapper ">
+
+				<figure class="mix work-item analysis">
+					<img src="imagefiles/Chart1.jpg" alt="">
+					<figcaption class="overlay">
+						<a class="fancybox" rel="works" title="SVG Path Animation" href="imagefiles/Chart1.jpg"><i class="fa fa-eye fa-lg"></i></a>
+						<h4>SVG Path Animation</h4>
+						<p>Analysis</p>
+					</figcaption>
+				</figure>
+
+				<figure class="mix work-item prediction">
+					<img src="imagefiles/Neuralnetwork.jpg" alt="">
+					<figcaption class="overlay">
+						<a class="fancybox" rel="works" title="Neural Network" href="imagefiles/Neuralnetwork.jpg"><i class="fa fa-eye fa-lg"></i></a>
+						<h4>Neural Network</h4>
+						<p>Prediction</p>
+					</figcaption>
+				</figure>
+
+				<figure class="mix work-item ml">
+					<img src="imagefiles/ML.jpg" alt="">
+					<figcaption class="overlay">
+						<a class="fancybox" rel="works" title="Machine Learning using R" href="imagefiles/ML.jpg"><i class="fa fa-eye fa-lg"></i></a>
+						<h4>Use of R</h4>
+						<p>Machine Learning</p>
+					</figcaption>
+				</figure>
+
+				<figure class="mix work-item database">
+					<img src="imagefiles/Mongo.jpg" alt="">
+					<figcaption class="overlay">
+						<a class="fancybox" rel="works" title="Mongo using Mongoose" href="imagefiles/Mongo.jpg"><i class="fa fa-eye fa-lg"></i></a>
+						<h4>Mongo Database</h4>
+						<p>Database</p>
+					</figcaption>
+				</figure>
+
+			</div>
+
+
+		</section>
+
+        <!--
+        End Our Works
+        ==================================== -->
+
+        <!--
+        Meet Our Team
+        ==================================== -->
+
+		<section id="team" class="team">
+			<div class="container">
+				<div class="row">
+
+					<div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
+						<h2>Meet Our Team</h2>
+						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+					</div>
+
+					<div class="sec-sub-title text-center wow fadeInRight animated" data-wow-duration="500ms">
+						<p>Our team consists of three enthusiastic students who are willing to contribute to society using their knowledge.</p>
+					</div>
+
+					<!-- single member -->
+					<figure class="team-member col-md-4 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
+						<div class="member-thumb">
+							<img src="imagefiles/aman.jpg" alt="Team Member" class="img-responsive">
+							<figcaption class="overlay">
+								<h5>Machine Learning</h5>
+								<p>R scripts and graphical analysis.</p>
+								<ul class="social-links text-center">
+									<li><a href="https://twitter.com/Am_Chopra" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+									<li><a href="https://www.facebook.com/aman.chopra.9279" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+									<li><a href="https://github.com/Aman-Chopra" target="_blank"><i class="fa fa-github fa-lg"></i></a></li>
+									<li><a href="https://www.linkedin.com/in/amchopra1" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a></li>
+
+								</ul>
+							</figcaption>
+						</div>
+						<h4>Aman Chopra</h4>
+						<span>Script Manager</span>
+					</figure>
+					<!-- end single member -->
+
+					<!-- single member -->
+					<figure class="team-member col-md-4 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+						<div class="member-thumb">
+							<img src="imagefiles/suvimal.jpg" alt="Team Member" class="img-responsive">
+							<figcaption class="overlay">
+								<h5>Connection with database and server</h5>
+								<p>Node.js expert.</p>
+								<ul class="social-links text-center">
+									<li><a href="https://www.facebook.com/suvimal.yashraj?fref=ts" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+									<li><a href="https://www.instagram.com/suvimalyashraj/?hl=en" target="_blank"><i class="fa fa-instagram fa-lg"></i></a></li>
+								</ul>
+							</figcaption>
+						</div>
+						<h4>Suvimal Yashraj</h4>
+						<span>Backend Developer</span>
+					</figure>
+					<!-- end single member -->
+
+					<!-- single member -->
+					<figure class="team-member col-md-4 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
+						<div class="member-thumb">
+							<img src="imagefiles/rishabh.png" alt="Team Member" class="img-responsive">
+							<figcaption class="overlay">
+								<h5>Frontend Designing</h5>
+								<p>Handles the user interface.</p>
+								<ul class="social-links text-center">
+									<li><a href="https://twitter.com/rishabh_drolia" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+									<li><a href="https://www.facebook.com/rishabhdrolia" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+									<li><a href="https://plus.google.com/106365482991938089852" target="_blank"><i class="fa fa-google-plus fa-lg"></i></a></li>
+								</ul>
+							</figcaption>
+						</div>
+						<h4>Rishabh Drolia</h4>
+						<span>UI Designer</span>
+					</figure>
+					<!-- end single member -->
+
+
+				</div>
+			</div>
+		</section>
+
+        <!--
+        End Meet Our Team
+        ==================================== -->
+
+		<!--
+        Some facts
+        ==================================== -->
+
+		<section id="facts" class="facts">
+			<div class="parallax-overlay">
+				<div class="container">
+					<div class="row number-counters">
+
+						<div class="sec-title text-center mb50 wow rubberBand animated" data-wow-duration="1000ms">
+							<h2>Some Facts</h2>
+							<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+						</div>
+
+						<!-- first count item -->
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
+							<div class="counters-item">
+								<i class="fa fa-clock-o fa-3x"></i>
+								<strong data-to="300">0</strong>
+								<p>Hours of Work</p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+							<div class="counters-item">
+								<i class="fa fa-code fa-3x"></i>
+								<strong data-to="6253">0</strong>
+								<p>Lines of Code</p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
+							<div class="counters-item">
+								<i class="fa fa-area-chart fa-3x"></i>
+								<strong data-to="10">0</strong>
+								<p> Types of Graphs </p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="900ms">
+							<div class="counters-item">
+								<i class="fa fa-check fa-3x"></i>
+								<strong data-to="98">0</strong>
+								<p>% Accuracy of Prediction</p>
+							</div>
+						</div>
+						<!-- end first count item -->
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+        <!--
+        End Some facts
+        ==================================== -->
+
+
+		<!--
+        Contact Us
+        ==================================== -->
+
+		<section id="contact" class="contact">
+			<div class="container">
+				<div class="row mb50">
+
+					<div class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
+						<h2>Let’s Discuss</h2>
+						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+					</div>
+
+					<div class="sec-sub-title text-center wow rubberBand animated" data-wow-duration="1000ms">
+						<p>We will appreciate your feedback, feel free to contact us.</p>
+					</div>
+
+					<!-- contact address -->
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
+						<div class="contact-address">
+							<h3>Contact Information!</h3>
+							<p>Manipal Institute of Technology,</p>
+							<p>Manipal. Karnataka.</p>
+							<p>Profitis@Cardigram.com</p>
+							<p class="wow bounceInDown" data-wow-delay="0.4s"><i class="fa fa-mobile wow bounceInDown" data-wow-delay="0.6s"></i>        8197974214</p>
+						</div>
+					</div>
+					<!-- end contact address -->
+
+					<!-- contact form -->
+					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 wow fadeInDown animated pull-right" data-wow-duration="500ms" data-wow-delay="300ms">
+						<div class="contact-form">
+							<h3>Say hello!</h3>
+							<form action="MAILTO:amanchopra64@gmail.com" method="post" enctype="text/plain" id="contact-form">
+                <!--<form id="contact-form">-->
+								<div class="input-group name-email">
+									<div class="input-field">
+										<input type="text" name="name" id="name" placeholder="Name" class="form-control">
+									</div>
+									<div class="input-field">
+										<input type="email" name="email" id="email" placeholder="Email" class="form-control">
+									</div>
+								</div>
+								<div class="input-group">
+									<textarea name="message" id="message" placeholder="Message" class="form-control"></textarea>
+								</div>
+								<div class="input-group">
+									<input type="submit" id="form-submit" class="pull-right" value="Send message">
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+					<!-- end contact form -->
+
+
+				</div>
+			</div>
+
+			<!-- Google map -->
+			<div id="map_canvas" class="wow bounceInDown animated" data-wow-duration="500ms"></div>
+			<!-- End Google map -->
+
+		</section>
+
+        <!--
+        End Contact Us
+        ==================================== -->
+
+
+		<footer id="footer" class="footer">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms">
+						<div class="footer-single">
+							<img src="imagefiles/Footer_logo.png" alt="">
+							<p>Cardigram helps patients to store their reports, it gives a visual analysis of patient's data, it predicts the gensini score using machine learning and data mining which is a direct indication of severity of heart diseases.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms">
+						<div class="footer-single">
+						</div>
+					</div>
+
+
+					<div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
+						<div class="footer-single">
+							<h6>Explore</h6>
+							<p>Cardigram is a biomedical ontology and a personalized patient's database which aims to serve users by storing their medical data in a single and secured place.</p>
+							<ul>
+								<li><a href="https://www.facebook.com/mitcardigram/" target="_blank">Facebook</a></li>
+								<li><a href="https://twitter.com/cardigram" target="_blank">Twitter</a></li>
+								<li><a href="https://github.com/Aman-Chopra/Cardigram" target="_blank">Github</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copyright text-center">
+							Copyright © 2016 Cardigram</a>. All rights reserved. Designed & developed by <a href="https://www.facebook.com/mitcardigram/" target="_blank">Cardigram</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+		<!--<div class="icon icon-heart"><span class="dot"></span><span class="line"></span></div>-->
+
+		<a href="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
+
+    <!-- Essential jQuery Plugins
+		================================================== -->
+		<!-- Main jQuery -->
+        <script src="javascripts/jquery-1.11.1.min.js"></script>
+		<!-- Single Page Nav -->
+        <script src="javascripts/jquery.singlePageNav.min.js"></script>
+		<!-- jquery.fancybox.pack -->
+        <script src="javascripts/jquery.fancybox.pack.js"></script>
+		<!-- jquery.mixitup.min -->
+        <script src="javascripts/jquery.mixitup.min.js"></script>
+		<!-- jquery.parallax -->
+        <script src="javascripts/jquery.parallax-1.1.3.js"></script>
+		<!-- jquery.countTo -->
+        <script src="javascripts/jquery-countTo.js"></script>
+		<!-- jquery.appear -->
+        <script src="javascripts/jquery.appear.js"></script>
+		<!-- Contact form validation -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+		<!-- Google Map -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<!-- jquery easing -->
+        <script src="javascripts/jquery.easing.min.js"></script>
+		<!-- jquery easing -->
+        <script src="javascripts/wow.min.js"></script>
+		<script>
+			var wow = new WOW ({
+				boxClass:     'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset:       120,          // distance to the element when triggering the animation (default is 0)
+				mobile:       false,       // trigger animations on mobile devices (default is true)
+				live:         true        // act on asynchronously loaded content (default is true)
+			  }
+			);
+			wow.init();
+		</script>
+		<!-- Custom Functions -->
+        <script src="javascripts/custom.js"></script>
+
+		<script type="text/javascript">
+			$(function(){
+				/* ========================================================================= */
+				/*	Contact Form
+				/* ========================================================================= */
+
+				$('#contact-form').validate({
+					rules: {
+						name: {
+							required: true,
+							minlength: 2
+						},
+						email: {
+							required: true,
+							email: true
+						},
+						message: {
+							required: true
+						}
+					},
+					messages: {
+						name: {
+							required: "Come on, you have a name don't you?",
+							minlength: "Your name must consist of at least 2 characters"
+						},
+						email: {
+							required: "No email, no message."
+						},
+						message: {
+							required: "You have to write something to send this form.",
+							minlength: "That's all? really?"
+						}
+					},
+					/*submitHandler: function(form) {
+						$(form).ajaxSubmit({
+							type:"POST",
+							data: $(form).serialize(),
+							url:'/process/process.php',
+							success: function() {
+								$('#contact-form :input').attr('disabled', 'disabled');
+								$('#contact-form').fadeTo( "slow", 0.15, function() {
+									$(this).find(':input').attr('disabled', 'disabled');
+									$(this).find('label').css('cursor','default');
+									$('#success').fadeIn();
+								});
+							},
+							error: function() {
+								$('#contact-form').fadeTo( "slow", 0.15, function() {
+									$('#error').fadeIn();
+								});
+							}
+						});
+					}*/
+				});
+			});
+		</script>

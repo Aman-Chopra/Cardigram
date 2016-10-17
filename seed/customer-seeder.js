@@ -9,37 +9,43 @@ var customers = [
     Name: 'Aman',
     Value1: 25,
     Value2: 36,
-    Value3: 44
+    Value3: 44,
+    Value4: 49
   }),
   new Customer({
     Name: 'Daniel',
     Value1: 27,
     Value2: 38,
-    Value3: 43
+    Value3: 43,
+    Value4: 46
   }),
   new Customer({
     Name: 'ASCII',
     Value1: 34,
     Value2: 23,
-    Value3: 47
+    Value3: 47,
+    Value4: 43
   }),
   new Customer({
     Name: 'Ayush',
     Value1: 29,
     Value2: 46,
-    Value3: 34
+    Value3: 34,
+    Value4: 48
   }),
   new Customer({
     Name: 'Navneet',
     Value1: 57,
     Value2: 23,
-    Value3: 19
+    Value3: 19,
+    Value4: 42
   }),
   new Customer({
     Name: 'Anuraag',
     Value1: 21,
     Value2: 38,
-    Value3: 47
+    Value3: 47,
+    Value4: 46
   }),
 ];
 

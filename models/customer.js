@@ -6,7 +6,8 @@ var schema = new Schema({
   Name : {type: String , required: true},
   Value1 : {type: Number , required: true},
   Value2 : {type: Number , required: true},
-  Value3 : {type: Number , required: true}
+  Value3 : {type: Number , required: true},
+  Value4 : {type: Number , required: true}
 });
 
 module.exports = mongoose.model('customer',schema);
