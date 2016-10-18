@@ -1,12 +1,17 @@
 var express = require('express');
 var router = express.Router();
+//For route grouping
+var passport = require('passport');
+var csrf = require('csurf');
+var csrfProtection = csrf();//using protection as a middleware
+router.use(csrfProtection);//All the routers are protected using this csrf protection
+var Order = require('../models/order');
 var Cart = require('../models/cart');
 /* GET home page. */
 //var products = Product.find();finding is asynchronous so we require a callback
 var Product = require('../models/product');//importing product model
-var Order = require('../models/order');
 var Customer = require('../models/customer');
-var fs    = require("fs");
+var fs   = require("fs");
 var driverChunks = [];
 
 router.get('/', function(req, res, next) {
@@ -24,6 +29,25 @@ router.get('/', function(req, res, next) {
 
 router.get('/dashboard', function(req, res, next) {
     res.render('shop/dashboard', { title: 'Dashboard'});
+  });
+  router.get('/signin', function(req, res, next) {
+    var messages = req.flash('error');//messsages like 'Email' already in use are stored in error of flash
+    res.render('user/signin', { csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
+  });
+
+  router.post('/signin', passport.authenticate('local.signin', {
+      failureRedirect: '/signin',
+      failureFlash: true
+  }), function (req, res, next) {
+      if (req.session.oldUrl) {
+        console.log("hi");
+          var oldUrl = req.session.oldUrl;
+          req.session.oldUrl = null;
+          res.redirect(oldUrl);
+      } else {
+        console.log("hi");
+          res.redirect('/user/profile');
+      }
   });
 
 
