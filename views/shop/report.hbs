@@ -1,0 +1,217 @@
+<link rel='stylesheet' href='/stylesheets/dashboard.css' />
+
+<!--<a id="test">Show/Hide</a>
+
+<div id = "harkuch" style="display:none;" class="ct-chart ct-major-third">
+          </div>
+
+          <script type="text/javascript" src="javascripts/charts.js"></script>
+
+  <script>
+  var A = document.getElementById('test');
+  window.onload = function() {
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "/charts", true);
+  xmlhttp.responseType = 'json';
+  xmlhttp.onreadystatechange = function() {
+    if(xmlhttp.status == 200) {
+      var data = xmlhttp.response;
+      console.log(data);
+	var text = document.getElementById("harkuch");
+	if(text.style.display == "block") {
+    		text.style.display = "none";
+  	}
+	else{
+		text.style.display = "block";
+	}
+      drawChart(data);
+    }
+  }
+  xmlhttp.send();
+  console.log("Request was sent to server");
+  }
+  </script>-->
+
+  <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/dashboard">Cardigram</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav side-nav">
+                  <li>
+                      <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>
+                  <li>
+                      <a href="/getcharts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                  </li>
+                  <li>
+                      <a href="/table"><i class="fa fa-fw fa-table"></i> Tables</a>
+                  </li>
+                  <li  class="active">
+                      <a href="/report"><i class="fa fa-fw fa-database"></i> Reports</a>
+                  </li>
+                  <li>
+                      <a href="/gensini"><i class="fa fa-fw fa-gratipay"></i> Gensini</a>
+                  </li>
+                  <li>
+                      <a href="/uploaddata"><i class="fa fa-fw fa-upload"></i> Upload data</a>
+                  </li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h1 class="page-header">
+                          Reports
+                      </h1>
+                      <ol class="breadcrumb">
+                          <li>
+                              <i class="fa fa-dashboard"></i>  <a href="/dashboard"><b>Dashboard</b></a>
+                          </li>
+                          <li class="active">
+                              <i class="fa fa-database"></i> Reports.
+                          </li>
+                      </ol>
+                  </div>
+              </div>
+
+
+
+                <!-- Page Heading -->
+
+
+                <!--    <p>Welcome</p>
+                        <form method='post' action='upload' enctype="multipart/form-data">
+                          <input type="file" class='filestyle' data-buttonName="btn-primary" name='fileUploaded' id='uploadFile'>
+                      <br>
+                        <input type='submit'>
+
+
+                </form> -->
+<!--<div class="col-lg-6 col-sm-6 col-6">
+              <form method='post' action='upload' enctype="multipart/form-data">
+
+            <h4>Choose a file to upload</h4>
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" name='fileUploaded' style="display: none;" multiple>
+                    </span>
+                </label>
+                <input type="text" class="form-control" readonly>
+            </div>
+            <br>
+            <input type='submit' class="btn btn-primary" value='Upload'>
+            </form>
+        </div>-->
+
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">File Upload</h4>
+              </div>
+              <div class="modal-body">
+                <p class="input-sm" id="txtfname"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id = "closebutton" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+    <div class = "form-group col-lg-6 col-sm-6 col-6">
+      <form method='post' action='upload' enctype="multipart/form-data">
+      <input type = "file" class = "filestyle" name='fileUploaded' data-icon = "false">
+      <br>
+      <input type='submit' class="btn btn-primary" value='Upload'>
+      </form>
+    </div>
+
+
+
+                <br>
+                <br>
+                <script type="text/javascript" src="javascripts/global.js"></script>
+
+                <div id = "download" class="table-responsive col-lg-12 col-sm-12 col-12">
+                <table class="table table-condensed table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name<i class="fa fa-fw fa-download"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                    </div>
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <script>
+    $('form').submit(function(){
+       if(!$('input[type="file"]').val()) {
+         $("#myModal").modal("show");
+         document.getElementById("txtfname").innerHTML = "Please select a file to upload.";
+            // No file is uploaded, do not submit.
+            return false;
+        }
+        else {
+            return true;
+        }
+    });
+
+        </script>
+    <script type="text/javascript" src="javascripts/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="javascripts/homebar.js"></script>
+    <script type="text/javascript" src="javascripts/homechart.js"></script>

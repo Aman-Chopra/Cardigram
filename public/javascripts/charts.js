@@ -30,3 +30,26 @@ var chart = new Chartist.Line('.ct-chart4', data, {
   showArea: true
 });
 }
+
+
+
+
+
+function drawChart4(data) {
+var options = {
+  seriesBarDistance: 10
+};
+
+var responsiveOptions = [
+  ['screen and (max-width: 640px)', {
+    seriesBarDistance: 5,
+    axisX: {
+      labelInterpolationFnc: function (value) {
+        return value[0];
+      }
+    }
+  }]
+];
+
+new Chartist.Bar('.ct-chart4', data, options, responsiveOptions);
+}

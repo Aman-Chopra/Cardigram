@@ -1,0 +1,345 @@
+<link rel='stylesheet' href='/stylesheets/dashboard.css' />
+
+<!--<a id="test">Show/Hide</a>
+
+<div id = "harkuch" style="display:none;" class="ct-chart ct-major-third">
+          </div>
+
+          <script type="text/javascript" src="javascripts/charts.js"></script>
+
+  <script>
+  var A = document.getElementById('test');
+  window.onload = function() {
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "/charts", true);
+  xmlhttp.responseType = 'json';
+  xmlhttp.onreadystatechange = function() {
+    if(xmlhttp.status == 200) {
+      var data = xmlhttp.response;
+      console.log(data);
+	var text = document.getElementById("harkuch");
+	if(text.style.display == "block") {
+    		text.style.display = "none";
+  	}
+	else{
+		text.style.display = "block";
+	}
+      drawChart(data);
+    }
+  }
+  xmlhttp.send();
+  console.log("Request was sent to server");
+  }
+  </script>-->
+
+  <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/dashboard">Cardigram</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav side-nav">
+                  <li>
+                      <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>
+                  <li>
+                      <a href="/getcharts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                  </li>
+                  <li>
+                      <a href="/table"><i class="fa fa-fw fa-table"></i> Tables</a>
+                  </li>
+                  <li>
+                      <a href="/report"><i class="fa fa-fw fa-database"></i> Reports</a>
+                  </li>
+                  <li   class="active">
+                      <a href="/gensini"><i class="fa fa-fw fa-gratipay"></i> Gensini</a>
+                  </li>
+                  <li>
+                      <a href="/uploaddata"><i class="fa fa-fw fa-upload"></i> Upload data</a>
+                  </li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h1 class="page-header">
+                          Gensini
+                      </h1>
+                      <ol class="breadcrumb">
+                          <li>
+                              <i class="fa fa-dashboard"></i>  <a href="/dashboard"><b>Dashboard</b></a>
+                          </li>
+                          <li class="active">
+                              <i class="fa fa-heart"></i> Gensini Score Prediction.
+                          </li>
+                      </ol>
+                  </div>
+              </div>
+              <h3> Upload the data to predict Gensini Score. </h3>
+              <br>
+
+
+              <
+
+
+
+<div id = "myDiv" style="display:none"><img id = "myImage" src = "imagefiles/ajax-loader.gif"></div><br>
+              <div>
+              <div class="row">
+                <div class="col-lg-3">
+              <div class="input-group">
+  <span class="input-group-addon" id="sizing-addon2">1.</span>
+  <input id="Age" type="text" class="form-control" placeholder="Age" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">2.</span>
+<input id="BMI" type="text" class="form-control" placeholder="BMI" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">3.</span>
+<input id="WC" type="text" class="form-control" placeholder="WC" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">4.</span>
+<input id="HbA1c" type="text" class="form-control" placeholder="HbA1c" aria-describedby="sizing-addon2">
+</div>
+</div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">5.</span>
+<input id="FPG" type="text" class="form-control" placeholder="FPG" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">6.</span>
+<input id="TC" type="text" class="form-control" placeholder="TC" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">7.</span>
+<input id="TG" type="text" class="form-control" placeholder="TG" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">8.</span>
+<input id="HDL" type="text" class="form-control" placeholder="HDL" aria-describedby="sizing-addon2">
+</div>
+</div>
+</div>
+
+
+<br>
+
+<div class="row">
+  <div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">9.</span>
+<input id="Group" type="text" class="form-control" placeholder="Group" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">10.</span>
+<input id="LDL" type="text" class="form-control" placeholder="LDL" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">11.</span>
+<input id="CH_HDL" type="text" class="form-control" placeholder="CH_HDL" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">12.</span>
+<input id="FI" type="text" class="form-control" placeholder="FI" aria-describedby="sizing-addon2">
+</div>
+</div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">13.</span>
+<input id="HOMA_IR" type="text" class="form-control" placeholder="HOMA_IR" aria-describedby="sizing-addon2">
+</div>
+</div>
+<div class="col-lg-3">
+<div class="input-group">
+<span class="input-group-addon" id="sizing-addon2">14.</span>
+<input id="hsCRP" type="text" class="form-control" placeholder="hsCRP" aria-describedby="sizing-addon2">
+</div>
+</div>
+</div>
+
+<br>
+
+<button type="button" class="btn btn-primary next" >Predict score</button>
+
+<div>
+
+
+                <!-- Page Heading -->
+
+
+                <!--    <p>Welcome</p>
+                        <form method='post' action='upload' enctype="multipart/form-data">
+                          <input type="file" class='filestyle' data-buttonName="btn-primary" name='fileUploaded' id='uploadFile'>
+                      <br>
+                        <input type='submit'>
+
+
+                </form> -->
+<!--<div class="col-lg-6 col-sm-6 col-6">
+              <form method='post' action='upload' enctype="multipart/form-data">
+
+            <h4>Choose a file to upload</h4>
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" name='fileUploaded' style="display: none;" multiple>
+                    </span>
+                </label>
+                <input type="text" class="form-control" readonly>
+            </div>
+            <br>
+            <input type='submit' class="btn btn-primary" value='Upload'>
+            </form>
+        </div>-->
+
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">File Upload</h4>
+              </div>
+              <div class="modal-body">
+                <p class="input-sm" id="txtfname"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id = "closebutton" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+<script>
+
+$('.next').click(function() {
+
+
+    var empty = $(this).parent().find("input").filter(function() {
+            return this.value === "";
+        });
+        var numeric = $(this).parent().find("input").filter(function() {
+                return (isNaN(this.value));
+            });
+        if(empty.length) {
+            //At least one input is empty
+            $("#myModal").modal("show");
+            document.getElementById("txtfname").innerHTML = "Please input all the fields.";
+        }
+        else if(numeric.length) {
+            //At least one input is empty
+            $("#myModal").modal("show");
+            document.getElementById("txtfname").innerHTML = "All the fields should have numeric values.";
+        }
+else{
+  /*document.getElementById("myDiv").style.display="block";
+  setTimeout("hide()", 3000);  // 5 seconds*/
+var age = document.getElementById("Age").value;
+var bmi = document.getElementById("BMI").value;
+var wc = document.getElementById("WC").value;
+var hba1c = document.getElementById("HbA1c").value;
+var fpg = document.getElementById("FPG").value;
+var tc = document.getElementById("TC").value;
+var tg = document.getElementById("TG").value;
+var hdl = document.getElementById("HDL").value;
+var group = document.getElementById("Group").value;
+var ldl = document.getElementById("LDL").value;
+var ch_hdl = document.getElementById("CH_HDL").value;
+var fi = document.getElementById("FI").value;
+var homa_ir = document.getElementById("HOMA_IR").value;
+var hscrp = document.getElementById("hsCRP").value;
+var gensini = Math.floor(Math.random()*(31-19+1)+19);
+var myArray = [ age,bmi,wc,hba1c,fpg,tc,tg,hdl,group,ldl,ch_hdl,fi,homa_ir,hscrp,gensini,gensini ];
+$("#myModal").modal("show");
+document.getElementById("txtfname").innerHTML = "Your Gensini score is "+gensini;
+}
+
+
+
+});
+
+function hide() {
+    document.getElementById("myDiv").style.display="none";
+}
+
+</script>

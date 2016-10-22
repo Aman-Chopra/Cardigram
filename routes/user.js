@@ -27,9 +27,7 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
     res.redirect('/');
 });
 
-router.use('/', notLoggedIn, function(req, res, next) {
-   next();
-});
+
 
 router.get('/signup', function(req, res, next) {
   var messages = req.flash('error');//messsages like 'Email' already in use are stored in error of flash
@@ -46,18 +44,29 @@ router.post('/signup', passport.authenticate('local.signup', {
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {
-        res.redirect('/user/profile');
+        res.redirect('/dashboard');
     }
 });
 
 
 
-/*router.get('/signin', function(req, res, next) {
+router.get('/signin', function(req, res, next) {
   var messages = req.flash('error');//messsages like 'Email' already in use are stored in error of flash
   res.render('user/signin', { csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
-});*/
+});
 
-
+router.post('/signin', passport.authenticate('local.signin', {
+    failureRedirect: '/user/signin',
+    failureFlash: true
+}), function (req, res, next) {
+    if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        res.redirect('/dashboard');
+    }
+});
 
 
 

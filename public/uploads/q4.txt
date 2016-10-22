@@ -1,8 +1,0 @@
-#!C:\Strawberry\perl\bin\perl.exe
-print "Enter 17+23:";
-$ans = <>;
-until($ans == "43")
-{
-	$ans = <>;
-}
-print "Thank you.";

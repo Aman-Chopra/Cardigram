@@ -17,6 +17,8 @@ body {
     }
 }
 
+a { color: inherit; } 
+
 #wrapper {
     padding-left: 0;
 }
@@ -263,4 +265,16 @@ ul.alert-dropdown {
 /*Buttons*/
 .button{
 border-radius: 0 !important;
+}
+
+/*table rows*/
+.sortable tr {
+    cursor: pointer;
+}
+.sortable tr:hover {
+    background: #add8e6 !important;
+}
+.selected {
+    background-color: #add8e6;
+    color: #FFF;
 }

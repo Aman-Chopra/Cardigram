@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <h1>Sign Up</h1>
+      <br><br>
+      <br><br>
         {{#if hasErrors}}
             <div class="alert alert-danger">
                 {{# each messages }}
@@ -8,6 +9,21 @@
                 {{/each}}
             </div>
         {{/if}}<!--Validation, in handlebars, we can't use if to check equality-->
+        <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-envelope"></span>  Cardigram Signup
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading text-success">
+                                Your personalized medical database.
+                            </h4>
+                            <p class="margin-top-10 margin-bottom-20">
+                                Predicts your gensini score!
+                            </p>
         <form action="/user/signup" method="post">
             <div class="form-group">
                 <label for="email">E-Mail</label>
@@ -23,4 +39,8 @@
             <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
     </div>
+</div>
+</div>
+</div>
+</div>
 </div>

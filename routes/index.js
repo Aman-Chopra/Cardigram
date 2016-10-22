@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 //For route grouping
 var passport = require('passport');
-var csrf = require('csurf');
-var csrfProtection = csrf();//using protection as a middleware
-router.use(csrfProtection);//All the routers are protected using this csrf protection
 var Order = require('../models/order');
 var Cart = require('../models/cart');
 /* GET home page. */
@@ -26,29 +23,35 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/name', function (req, res) {
+    Customer.find(function(err, docs){
+      var j = 0;
+      for(var i = 0; i < docs.length; i++){
+        if(docs[i]._id==req.body.selected[j]){
+        driverChunks.push(docs[i]);
+        j++;
+      }
+      }
+      console.log(driverChunks);
+    })
+  });
+
+  router.get('/signin', function(req, res, next) {
+      res.redirect('/user/signin');
+    });
 
 router.get('/dashboard', function(req, res, next) {
-    res.render('shop/dashboard', { title: 'Dashboard'});
-  });
-  router.get('/signin', function(req, res, next) {
-    var messages = req.flash('error');//messsages like 'Email' already in use are stored in error of flash
-    res.render('user/signin', { csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
+    res.render('shop/dashboard', { title: 'Dashboard', Name: 'yo'});
   });
 
-  router.post('/signin', passport.authenticate('local.signin', {
-      failureRedirect: '/signin',
-      failureFlash: true
-  }), function (req, res, next) {
-      if (req.session.oldUrl) {
-        console.log("hi");
-          var oldUrl = req.session.oldUrl;
-          req.session.oldUrl = null;
-          res.redirect(oldUrl);
-      } else {
-        console.log("hi");
-          res.redirect('/user/profile');
-      }
-  });
+  router.get('/gensini', function(req, res, next) {
+      res.render('shop/gensini', { title: 'Gensini', Name: 'yo'});
+    });
+
+    router.get('/uploaddata', function(req, res, next) {
+        res.render('shop/uploaddata', { title: 'Upload-data', Name: 'yo'});
+      });
+
 
 
   router.get('/yolo', function(req, res, next) {
@@ -74,15 +77,16 @@ router.get('/table', function (req, res, next) {
   });
 });
 
-router.get('/try', function (req, res, next) {
-      res.render('shop/try');
-});
 
 
 
 router.get('/getcharts', function (req, res, next) {
       res.render('shop/charts', { title: 'Charts'});
   });
+
+  router.get('/report', function (req, res, next) {
+        res.render('shop/report', { title: 'Report'});
+    });
 
 
 
@@ -116,17 +120,6 @@ router.get('/charts', function (req, res, next) {
   });
 });
 
-router.post('/name', function (req, res) {
-    Customer.find(function(err, docs){
-      var j = 0;
-      for(var i = 0; i < docs.length; i++){
-        if(docs[i]._id==req.body.selected[j]){
-        driverChunks.push(docs[i]);
-        j++;
-      }
-      }
-    })
-  });
 
   router.get('/name', function (req, res) {
       var jsonObj = {
@@ -152,9 +145,7 @@ router.post('/name', function (req, res) {
       driverChunks = [];
 });
 
-router.get('/forms', isLoggedIn, function (req, res, next) {
-        res.render('shop/forms', { title: 'Forms'});
-    });
+
 
 router.get('/add/:id', function(req, res, next) {
     var productId = req.params.id;
@@ -250,10 +241,34 @@ router.post('/upload', function(req, res) {
         var fstream = fs.createWriteStream('./public/uploads/' + filename);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.send('upload succeeded!');
+          res.redirect('/report');
         });
     });
 });
+
+
+
+/*router.post('/upload', function(req, res) {
+  var busboy = new Busboy({ headers: req.headers });
+  var files = 0, finished = false;
+  busboy.on('file', function (fieldname, file, filename) {
+    console.log("Uploading: " + filename);
+    ++files;
+    var fstream = fs.createWriteStream('./public/uploads/' + filename);
+    fstream.on('finish', function() {
+      if (--files === 0 && finished) {
+        res.writeHead(200, { 'Connection': 'close' });
+        res.end("");
+      }
+    });
+    file.pipe(fstream);
+  });
+  busboy.on('finish', function() {
+    finished = true;
+  });
+  return req.pipe(busboy);
+  res.redirect('/report');
+});*/
 
 router.get('/uploads/:file', function (req, res){
   var path=require('path');
