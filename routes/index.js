@@ -8,22 +8,23 @@ var Cart = require('../models/cart');
 //var products = Product.find();finding is asynchronous so we require a callback
 var Product = require('../models/product');//importing product model
 var Customer = require('../models/customer');
+var Patient = require('../models/patient');
 var fs   = require("fs");
+var csv = require('ya-csv');
 var driverChunks = [];
 
 router.get('/', function(req, res, next) {
-  var successMsg = req.flash('success')[0];
   Product.find(function(err , docs){
     var productChunks = [];
     var chunkSize = 3;
     for(var i = 0; i < docs.length; i+=chunkSize){
       productChunks.push(docs.slice(i , i+chunkSize));
     }
-    res.render('shop/index', { title: 'Cardigram' , products: productChunks , successMsg: successMsg , noMessages: !successMsg});
+    res.render('shop/index', { title: 'Cardigram' , products: productChunks});
   });
 });
 
-router.post('/name', function (req, res) {
+router.post('/name',isLoggedIn, function (req, res) {
     Customer.find(function(err, docs){
       var j = 0;
       for(var i = 0; i < docs.length; i++){
@@ -36,68 +37,143 @@ router.post('/name', function (req, res) {
     })
   });
 
-  router.get('/signin', function(req, res, next) {
-      res.redirect('/user/signin');
+
+  router.post('/appendcsv', isLoggedIn,function (req, res) {
+      var csvChunks = [];
+        for(var i = 0; i < req.body.myArray.length; i++){
+          csvChunks.push(req.body.myArray[i]);
+        }
+        var w = csv.createCsvFileWriter('./new_data.csv', {'flags': 'a'});
+        /*var data = [];
+        for(key in csvChunks) {
+        if(typeof csvChunks[key] !== 'function'){
+            //data.push(key);
+            data.push(csvChunks[key]);
+        }
+      }*/
+
+        w.writeRecord(csvChunks);
+        csvChunks = [];
     });
 
-router.get('/dashboard', function(req, res, next) {
-    res.render('shop/dashboard', { title: 'Dashboard', Name: 'yo'});
-  });
 
-  router.get('/gensini', function(req, res, next) {
-      res.render('shop/gensini', { title: 'Gensini', Name: 'yo'});
-    });
+    router.post('/storedata', isLoggedIn,function (req, res) {
+      var patient = new Patient({
+      user: req.user.email,
+      Haemoglobin : req.body.myArray[0],
+      Leucocyte : req.body.myArray[1],
+      Neutrophils : req.body.myArray[2],
+      Lymphocytes: req.body.myArray[3],
+      Eosinophils: req.body.myArray[4],
+      Monocytes: req.body.myArray[5],
+      Cholesterol: req.body.myArray[6],
+      Triglycerides: req.body.myArray[7],
+      HDLCholesterol: req.body.myArray[8],
+      LDLCholesterol: req.body.myArray[9],
+      VLDLCholesterol: req.body.myArray[10],
+      LDLHDLCholesterol: req.body.myArray[11],
+      Urea: req.body.myArray[12],
+      Creatinine: req.body.myArray[13],
+      Sodium: req.body.myArray[14],
+      Uric: req.body.myArray[15],
+      Potassium: req.body.myArray[16],
+      Phosphorous: req.body.myArray[17],
+      Bilirubin: req.body.myArray[18],
+      Alkaline: req.body.myArray[19],
+      Protein: req.body.myArray[20],
+      Albumin: req.body.myArray[21],
+      Gamma: req.body.myArray[22],
+      Globulin: req.body.myArray[23]
+      });
 
-    router.get('/uploaddata', function(req, res, next) {
-        res.render('shop/uploaddata', { title: 'Upload-data', Name: 'yo'});
+      patient.save(function(err, result) {
+          req.flash('success', 'Successfully bought product!');//Store the objects in flash storage and access anywhere.
+
+        });
+
       });
 
 
 
-  router.get('/yolo', function(req, res, next) {
 
-var dir = './public/uploads/tmp';
-console.log("hi");
-if (!fs.existsSync(dir)){
-  console.log("hi");
-    fs.mkdirSync(dir);
-}
-
-      res.render('shop/dashboard', { title: 'Dashboard'});
+  router.get('/signin', function(req, res, next) {
+      res.redirect('/user/signin');
     });
 
-router.get('/table', function (req, res, next) {
-    Customer.find(function(err, docs){
-      var customerChunks = [];
+    router.get('/userprofile', isLoggedIn,function(req, res, next) {
+      var successMsg = req.flash('success')[0];
+        var a = "imagefiles/";
+        var b = req.user._id;
+        var c = ".png";
+        var photo = a+b+c;
+        res.render('shop/profile', { title: 'Profile', Name: req.user.email, Photo:photo , successMsg: successMsg , noMessages: !successMsg});
+      });
+
+
+router.get('/dashboard', isLoggedIn,function(req, res, next) {
+    res.render('shop/dashboard', { title: 'Dashboard', Name: req.user.email});
+  });
+
+  router.get('/gensini', isLoggedIn,function(req, res, next) {
+      res.render('shop/gensini', { title: 'Gensini', Name: req.user.email});
+    });
+
+    router.get('/uploaddata', isLoggedIn, function(req, res, next) {
+        res.render('shop/uploaddata', { title: 'Upload-data', Name: req.user.email});
+      });
+
+
+router.get('/table', isLoggedIn, function (req, res, next) {
+    Patient.find(function(err, docs){
+      var haematology = [];
+
       for(var i = 0; i < docs.length; i++){
-        customerChunks.push(docs.slice(i,i+1));
+        if(req.user.email==docs[i].user){
+
+        haematology.push(docs.slice(i,i+1));
+
       }
-      console.log(customerChunks);
-      res.render('shop/table', { title: 'Tables' , customers: customerChunks});
+    }
+    console.log(haematology);
+    console.log(haematology.length);
+    var length = haematology.length;
+      res.render('shop/table', { title: 'Tables' , haematology: haematology, Name: req.user.email, Length: length});
   });
 });
 
 
 
 
-router.get('/getcharts', function (req, res, next) {
-      res.render('shop/charts', { title: 'Charts'});
+router.get('/getcharts',isLoggedIn, function (req, res, next) {
+  Patient.find(function(err, docs){
+    var patientChunk = [];
+    for(var i = 0; i < docs.length; i++){
+      if(docs[i].user==req.user.email){
+      patientChunk.push(docs.slice(i,i+1));
+    }
+    }
+
+      res.render('shop/charts', { title: 'Charts', Name: req.user.email, Length:patientChunk.length });
+      });
   });
 
-  router.get('/report', function (req, res, next) {
-        res.render('shop/report', { title: 'Report'});
+  router.get('/report',isLoggedIn, function (req, res, next) {
+        res.render('shop/report', { title: 'Report', Name: req.user.email});
     });
 
 
 
 
-router.get('/charts', function (req, res, next) {
-    Customer.find(function(err, docs){
-      var customerChunks = [];
+router.get('/charts', isLoggedIn,function (req, res, next) {
+    Patient.find(function(err, docs){
+      var patientChunks = [];
       for(var i = 0; i < docs.length; i++){
-        customerChunks.push(docs.slice(i,i+1));
+        if(docs[i].user==req.user.email){
+        patientChunks.push(docs.slice(i,i+1));
       }
-      console.log(customerChunks);
+      }
+      console.log(patientChunks);
+      console.log(patientChunks.length);
       var jsonObj = {
         data : []
     };
@@ -106,11 +182,13 @@ router.get('/charts', function (req, res, next) {
     series : [[]]
   }
 
-      for(var i = 0; i < customerChunks.length; i++) {
-          temp.labels.push(customerChunks[i][0]["Name"]);
-          var temp1 = customerChunks[i][0]["Value1"];
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Haemoglobin"];
           temp.series[0].push(temp1);
+          console.log(temp);
           jsonObj.data.push(temp);
+
       }
       console.log(jsonObj);
       var toBeSentData = JSON.stringify(jsonObj);
@@ -121,7 +199,7 @@ router.get('/charts', function (req, res, next) {
 });
 
 
-  router.get('/name', function (req, res) {
+  router.get('/name', isLoggedIn,function (req, res) {
       var jsonObj = {
         data : []
     };
@@ -163,7 +241,7 @@ router.get('/add/:id', function(req, res, next) {
 
 router.get('/reduce/:id', function(req, res, next) {
     var productId = req.params.id;//params is for routes data not the form data, for form data, it's body.
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    var cart = new Cart(req.session.cart ?  req.session.cart : {});
 
     cart.reduceByOne(productId);
     req.session.cart = cart;
@@ -238,13 +316,44 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
 router.post('/upload', function(req, res) {
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename) {
-        var fstream = fs.createWriteStream('./public/uploads/' + filename);
+      var a = req.user.email;
+
+
+
+
+        var fstream = fs.createWriteStream('./public/uploads/' +a+'/'+ filename);
         file.pipe(fstream);
         fstream.on('close', function () {
           res.redirect('/report');
         });
     });
 });
+
+router.post('/photoupload', function(req, res) {
+    req.pipe(req.busboy);
+    req.busboy.on('file', function(fieldname, file, filename) {
+
+
+      var a = filename;
+      var b = a.indexOf('.');
+      var l = a.length;
+      //var c = a.substring(b,l);
+      var c = ".png";
+      var d = req.user._id;
+      var e = d+c;
+
+
+
+        var fstream = fs.createWriteStream('./public/images/' + e);
+        file.pipe(fstream);
+        req.flash('success', 'Successfully update profile picture!');
+        fstream.on('close', function () {
+          res.redirect('/userprofile');
+        });
+    });
+});
+
+
 
 
 
@@ -270,30 +379,34 @@ router.post('/upload', function(req, res) {
   res.redirect('/report');
 });*/
 
-router.get('/uploads/:file', function (req, res){
+router.get('/uploads/:file',isLoggedIn, function (req, res){
   var path=require('path');
     file = req.params.file;
-    var dirname = path.resolve(".")+'/public/uploads/';
+    var a = req.user.email;
+    var dirname = path.resolve(".")+'/public/uploads/'+a+'/';
     var img = fs.readFileSync(dirname  + file);
     res.writeHead(200, {'Content-Type': 'image/jpg' });
     res.end(img, 'binary');
 
 });
 
-router.get('/download', function(req, res) { // create download route
+router.get('/download', isLoggedIn,function(req, res) { // create download route
   var path=require('path'); // get path
-  var dir=path.resolve(".")+'/public/uploads/'; // give path
+  var a = req.user.email;
+  var dir=path.resolve(".")+'/public/uploads/'+a+'/'; // give path
     fs.readdir(dir, function(err, list) { // read directory return  error or list
     if (err) return res.json(err);
-    else
+    else{
                 res.json(list);
+              }
                 });
 });
 
 router.get('/:file(*)', function(req, res, next){ // this routes all types of file
   var path=require('path');
+  var a = req.user.email;
   var file = req.params.file;
-  var path = path.resolve(".")+'/public/uploads/'+file;
+  var path = path.resolve(".")+'/public/uploads/'+a+'/'+file;
   console.log(path);
   res.download(path); // magic of download fuction
 });

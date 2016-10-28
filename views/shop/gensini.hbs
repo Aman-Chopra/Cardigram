@@ -50,18 +50,16 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Name}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="/userprofile"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
 
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
+
                         <li class="divider"></li>
                         <li>
-                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -115,7 +113,7 @@
               <br>
 
 
-              <
+
 
 
 
@@ -228,7 +226,7 @@
 
 <button type="button" class="btn btn-primary next" >Predict score</button>
 
-<div>
+</div>
 
 
                 <!-- Page Heading -->
@@ -294,7 +292,11 @@
 
 $('.next').click(function() {
 
+    var group = document.getElementById("Group").value;
 
+    var negative = $(this).parent().find("input").filter(function() {
+            return this.value <=0 ;
+        });
     var empty = $(this).parent().find("input").filter(function() {
             return this.value === "";
         });
@@ -306,10 +308,19 @@ $('.next').click(function() {
             $("#myModal").modal("show");
             document.getElementById("txtfname").innerHTML = "Please input all the fields.";
         }
+        else if(group<=0 || group>4){
+          $("#myModal").modal("show");
+          document.getElementById("txtfname").innerHTML = "Group should be between 1 and 4.";
+        }
         else if(numeric.length) {
             //At least one input is empty
             $("#myModal").modal("show");
             document.getElementById("txtfname").innerHTML = "All the fields should have numeric values.";
+        }
+        else if(negative.length) {
+            //At least one input is empty
+            $("#myModal").modal("show");
+            document.getElementById("txtfname").innerHTML = "All the fields should have positive values.";
         }
 else{
   /*document.getElementById("myDiv").style.display="block";
@@ -322,16 +333,51 @@ var fpg = document.getElementById("FPG").value;
 var tc = document.getElementById("TC").value;
 var tg = document.getElementById("TG").value;
 var hdl = document.getElementById("HDL").value;
-var group = document.getElementById("Group").value;
 var ldl = document.getElementById("LDL").value;
 var ch_hdl = document.getElementById("CH_HDL").value;
 var fi = document.getElementById("FI").value;
 var homa_ir = document.getElementById("HOMA_IR").value;
 var hscrp = document.getElementById("hsCRP").value;
 var gensini = Math.floor(Math.random()*(31-19+1)+19);
-var myArray = [ age,bmi,wc,hba1c,fpg,tc,tg,hdl,group,ldl,ch_hdl,fi,homa_ir,hscrp,gensini,gensini ];
+var syntax = gensini;
+var jsonObj = {
+  myArray : []
+}
+jsonObj.myArray.push(age);
+jsonObj.myArray.push(bmi);
+jsonObj.myArray.push(wc);
+jsonObj.myArray.push(hba1c);
+jsonObj.myArray.push(fpg);
+jsonObj.myArray.push(tc);
+jsonObj.myArray.push(tg);
+jsonObj.myArray.push(hdl);
+jsonObj.myArray.push(group);
+jsonObj.myArray.push(ldl);
+jsonObj.myArray.push(ch_hdl);
+jsonObj.myArray.push(fi);
+jsonObj.myArray.push(homa_ir);
+jsonObj.myArray.push(hscrp);
+jsonObj.myArray.push(gensini);
+jsonObj.myArray.push(syntax);
 $("#myModal").modal("show");
 document.getElementById("txtfname").innerHTML = "Your Gensini score is "+gensini;
+$(this).parent().find("input").filter(function() {
+        this.value= "";
+    });
+$.ajax({
+type:"post",
+url:"/appendcsv",
+dataType: 'json',
+    data: JSON.stringify(jsonObj),
+    contentType: 'application/json',
+    success: function(data){
+       alert("success");
+       alert(data);
+}
+});
+
+
+
 }
 
 

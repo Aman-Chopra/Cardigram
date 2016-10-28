@@ -18,17 +18,15 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Name}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="/userprofile"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
+
                         <li class="divider"></li>
                         <li>
-                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -83,6 +81,9 @@
 
                 <!-- Flot Charts -->
 
+
+
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
@@ -97,6 +98,8 @@
                     </div>
                 </div>
 
+                {{# if Length}}
+
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -106,42 +109,17 @@
 
 
                 <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class=" current btn btn-default">Left</button>
-  <button type="button" class="btn btn-default">Middle</button>
-  <button type="button" id = "button3" class="btn btn-default"> <a href="#features">Right</a></button>
+  <button type="button" id = "button1" class=" current btn btn-default"> <a href="#haematology">Haematology</a></button>
+  <button type="button" id = "button2" class="btn btn-default"> <a href="#lipid">Lipid Profile</a></button>
+  <button type="button" id = "button3" class="btn btn-default"> <a href="#kidney">Kidney(KFT)</a></button>
+  <button type="button" id = "button4" class="btn btn-default"> <a href="#liver">Liver(LFT)</a></button>
 </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-
-                        <p class="lead"><i class="fa fa-line-chart"></i>  Number of customers per month.</p>
-                    </div>
-                  <!--  <div class="col-lg-6">
-                        <button type="button" class="btn btn-warning button pull-right">Click</button>
-                    </div>-->
-                </div>
-
-                <div class="ct-chart1"></div>
+<br>
+<br>
+<br>
 
 
-
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p class="lead"><i class="fa fa-bar-chart"></i>  Number of customers per month.</p>
-                    </div>
-
-                </div>
-
-                <div class="ct-chart2"></div>
-
-
-
-
-
-
-<!--<div class="ct-chart3"></div>-->
-
+<section id="haematology">
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -159,21 +137,81 @@
 <div id="collapseOne1" class="panel-collapse collapse in">
 <div class="panel-body">
 
+  <div class="ct-chart1"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<br>
+
+<section id="lipid">
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="lead"><i class="fa fa-pie-chart"></i>  Number of customers per month.</p>
+        </div>
+
+    </div>
+  </a>
+</h4>
+</div>
+<div id="collapseOne2" class="panel-collapse collapse in">
+<div class="panel-body">
+
+  <div class="ct-chart2"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<br>
+
+
+<!--<div class="ct-chart3"></div>-->
+<section id="kidney">
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3">
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="lead"><i class="fa fa-pie-chart"></i>  Number of customers per month.</p>
+        </div>
+
+    </div>
+  </a>
+</h4>
+</div>
+<div id="collapseOne3" class="panel-collapse collapse in">
+<div class="panel-body">
+
   <div class="ct-chart3"></div>
 </div>
 </div>
 </div>
 </div>
+</section>
 
 
+<br>
 
-
-<section id="features">
+<section id="liver">
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne4">
     <div class="row">
         <div class="col-lg-6">
             <p class="lead"><i class="fa fa-area-chart"></i>  Number of customers per month.</p>
@@ -183,7 +221,7 @@
   </a>
 </h4>
 </div>
-<div id="collapseOne" class="panel-collapse collapse in">
+<div id="collapseOne4" class="panel-collapse collapse in">
 <div class="panel-body">
 
   <div class="ct-chart4"></div>
@@ -194,8 +232,13 @@
 </section>
 
 
-
-
+{{ else }}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">No Charts to show.<br></h2>
+        </div>
+    </div>
+{{/if}}
 
 
                 <!-- /.row -->
@@ -220,9 +263,9 @@ if(xmlhttp.status == 200) {
 var data = xmlhttp.response;
 console.log(data.data[0]);
 drawChart(data.data[0]);
-drawChart1(data.data[1]);
-drawChart2(data.data[2]);
-drawChart3(data.data[3]);
+drawChart1(data.data[0]);
+drawChart2(data.data[0]);
+drawChart3(data.data[0]);
 }
 }
 xmlhttp.send();
@@ -236,4 +279,29 @@ $("#button3").click(function() {
     }, 2000);
 });
 </script>
+
+<script>
+$("#button1").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#haematology").offset().top
+    }, 2000);
+});
+$("#button2").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#lipid").offset().top
+    }, 2000);
+});
+$("#button3").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#kidney").offset().top
+    }, 2000);
+});
+$("#button4").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#liver").offset().top
+    }, 2000);
+});
+</script>
+
+
     <script type="text/javascript" src="javascripts/barchart.js"></script>

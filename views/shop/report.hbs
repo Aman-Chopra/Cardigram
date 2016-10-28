@@ -50,18 +50,16 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Name}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="/userprofile"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
 
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
+
                         <li class="divider"></li>
                         <li>
-                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -163,7 +161,7 @@
 
     <div class = "form-group col-lg-6 col-sm-6 col-6">
       <form method='post' action='upload' enctype="multipart/form-data">
-      <input type = "file" class = "filestyle" name='fileUploaded' data-icon = "false">
+      <input type = "file" class = "filestyle" name='fileUploaded' data-icon = "false" >
       <br>
       <input type='submit' class="btn btn-primary" value='Upload'>
       </form>
@@ -175,7 +173,12 @@
                 <br>
                 <script type="text/javascript" src="javascripts/global.js"></script>
 
-                <div id = "download" class="table-responsive col-lg-12 col-sm-12 col-12">
+
+                <div class="col-lg-12">
+                <h2 id= "heading" class="page-header"> No Saved files<br></h2></div>
+
+
+                <div id = "download" class="table-responsive col-lg-12 col-sm-12 col-12" style="display:none;">
                 <table class="table table-condensed table-hover table-bordered">
                     <thead>
                         <tr>

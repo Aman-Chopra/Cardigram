@@ -16,6 +16,7 @@ var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
 
 var app = express();
+mongoose.Promise = global.Promise;
 mongoose.connect('localhost:27017/report');
 //report is the name of the database
 require('./config/passport');//We simply want to load it which will run through passport.js file, so no need of binding it.

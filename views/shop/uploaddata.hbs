@@ -50,18 +50,16 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{Name}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="/userprofile"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
 
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
+
                         <li class="divider"></li>
                         <li>
-                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -114,6 +112,252 @@
 
 
 
+              <div class="btn-group" role="group" aria-label="...">
+<button type="button" id = "button1" class="btn btn-default"><a href="#haematology">Haematology</a></button>
+<button type="button" id = "button2" class="btn btn-default"><a href="#lipid">Lipid Profile</a></button>
+<button type="button" id = "button3" class="btn btn-default"> <a href="#kidney">Kidney(KFT)</a></button>
+<button type="button" id = "button4" class="btn btn-default"> <a href="#liver">Liver(LFT)</a></button>
+</div>
+<br>
+
+
+
+
+              <div>
+
+              <section id="haematology">
+                  <h1>Haematology</h1><br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">1.</span>
+              <input id="Haemoglobin" type="text" class="form-control" placeholder="Haemoglobin(gm/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">2.</span>
+              <input id="Leucocyte" type="text" class="form-control" placeholder="Leucocyte count(/c.mm)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">3.</span>
+              <input id="Neutrophils" type="text" class="form-control" placeholder="Neutrophils(%)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">4.</span>
+              <input id="Lymphocytes" type="text" class="form-control" placeholder="Lymphocytes(%)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">5.</span>
+              <input id="Eosinophils" type="text" class="form-control" placeholder="Eosinophils(%)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">6.</span>
+              <input id="Monocytes" type="text" class="form-control" placeholder="Monocytes(%)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+            </section>
+
+              <br>
+
+              <section id="lipid">
+                <h1>Lipid profile test</h1><br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">1.</span>
+              <input id="Cholesterol" type="text" class="form-control" placeholder="S.Cholesterol(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">2.</span>
+              <input id="Triglycerides" type="text" class="form-control" placeholder="S.Triglycerides(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">3.</span>
+              <input id="HDLCholesterol" type="text" class="form-control" placeholder="S. HDL Cholesterol(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">4.</span>
+              <input id="LDLCholesterol" type="text" class="form-control" placeholder="S. LDL Cholesterol(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">5.</span>
+              <input id="VLDLCholesterol" type="text" class="form-control" placeholder="S. VLDL Cholesterol(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">6.</span>
+              <input id="LDLHDLCholesterol" type="text" class="form-control" placeholder="LDL/HDL Cholesterol" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+            </section>
+
+              <br>
+
+              <section id="kidney">
+                  <h1>Kidney functioning test</h1><br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">1.</span>
+              <input id="Urea" type="text" class="form-control" placeholder="Blood Urea(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">2.</span>
+              <input id="Creatinine" type="text" class="form-control" placeholder="S.Creatinine(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">3.</span>
+              <input id="Sodium" type="text" class="form-control" placeholder="Sodium(mEq/L)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">4.</span>
+              <input id="Uric" type="text" class="form-control" placeholder="S.Uric Acid(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">5.</span>
+              <input id="Potassium" type="text" class="form-control" placeholder="S.Potassium(mEq/L)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">6.</span>
+              <input id="Phosphorous" type="text" class="form-control" placeholder="S.Phosphorous(mg/dl)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+            </section>
+
+              <br>
+
+              <section id="liver">
+                  <h1>Liver functioning test</h1><br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">1.</span>
+              <input id="Bilirubin" type="text" class="form-control" placeholder="S.Bilirubin(mg/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">2.</span>
+              <input id="Alkaline" type="text" class="form-control" placeholder="S.Alkaline Phosphate(U/L)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">3.</span>
+              <input id="Protein" type="text" class="form-control" placeholder="S.protein(gm/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">4.</span>
+              <input id="Albumin" type="text" class="form-control" placeholder="Albumin(gm/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">5.</span>
+              <input id="Gamma" type="text" class="form-control" placeholder="Gamma G.T.(u/l)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              <div class="col-lg-6">
+              <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">6.</span>
+              <input id="Globulin" type="text" class="form-control" placeholder="S.Globulin(gm/dL)" aria-describedby="sizing-addon2">
+              </div>
+              </div>
+              </div>
+              <br>
+            </section>
+
+              <br>
+
+
+
+              <button type="button" class="btn btn-primary next" >Submit Data</button>
+
+              </div>
+
+
+
+
+              <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Medical Data Upload</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p class="input-sm" id="txtfname"></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id = "closebutton" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+
+
+
+
                 <!-- Page Heading -->
 
 
@@ -142,22 +386,6 @@
             </form>
         </div>-->
 
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">File Upload</h4>
-              </div>
-              <div class="modal-body">
-                <p class="input-sm" id="txtfname"></p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" id = "closebutton" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
 
 
 
@@ -173,3 +401,141 @@
 
     </div>
     <!-- /#wrapper -->
+    <script>
+    $("#button1").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#haematology").offset().top
+        }, 2000);
+    });
+    $("#button2").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#lipid").offset().top
+        }, 2000);
+    });
+    $("#button3").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#kidney").offset().top
+        }, 2000);
+    });
+    $("#button4").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#liver").offset().top
+        }, 2000);
+    });
+    </script>
+
+
+
+    <script>
+
+    $('.next').click(function() {
+
+
+
+        var negative = $(this).parent().find("input").filter(function() {
+                return this.value <0 ;
+            });
+        var empty = $(this).parent().find("input").filter(function() {
+                return this.value === "";
+            });
+            var numeric = $(this).parent().find("input").filter(function() {
+                    return (isNaN(this.value));
+                });
+            if(empty.length) {
+                //At least one input is empty
+                $("#myModal").modal("show");
+                document.getElementById("txtfname").innerHTML = "Please input all the fields.";
+            }
+
+            else if(numeric.length) {
+                //At least one input is empty
+                $("#myModal").modal("show");
+                document.getElementById("txtfname").innerHTML = "All the fields should have numeric values.";
+            }
+            else if(negative.length) {
+                //At least one input is empty
+                $("#myModal").modal("show");
+                document.getElementById("txtfname").innerHTML = "All the fields should have positive values.";
+            }
+    else{
+
+    var hae = document.getElementById("Haemoglobin").value;
+    var leu = document.getElementById("Leucocyte").value;
+    var neu = document.getElementById("Neutrophils").value;
+    var lym = document.getElementById("Lymphocytes").value;
+    var eos = document.getElementById("Eosinophils").value;
+    var mon = document.getElementById("Monocytes").value;
+    var cho = document.getElementById("Cholesterol").value;
+    var tri = document.getElementById("Triglycerides").value;
+    var hdl = document.getElementById("HDLCholesterol").value;
+    var ldl = document.getElementById("LDLCholesterol").value;
+    var vld = document.getElementById("VLDLCholesterol").value;
+    var lra = document.getElementById("LDLHDLCholesterol").value;
+    var ure = document.getElementById("Urea").value;
+    var crea = document.getElementById("Creatinine").value;
+    var sod = document.getElementById("Sodium").value;
+    var uri = document.getElementById("Uric").value;
+    var pot = document.getElementById("Potassium").value;
+    var pho = document.getElementById("Phosphorous").value;
+    var bil = document.getElementById("Bilirubin").value;
+    var alk = document.getElementById("Alkaline").value;
+    var pro = document.getElementById("Protein").value;
+    var alb = document.getElementById("Albumin").value;
+    var gam = document.getElementById("Gamma").value;
+    var glo = document.getElementById("Globulin").value;
+
+    var jsonObj = {
+      myArray : []
+    }
+    jsonObj.myArray.push(hae);
+    jsonObj.myArray.push(leu);
+    jsonObj.myArray.push(neu);
+    jsonObj.myArray.push(lym);
+    jsonObj.myArray.push(eos);
+    jsonObj.myArray.push(mon);
+    jsonObj.myArray.push(cho);
+    jsonObj.myArray.push(tri);
+    jsonObj.myArray.push(hdl);
+    jsonObj.myArray.push(ldl);
+    jsonObj.myArray.push(vld);
+    jsonObj.myArray.push(lra);
+    jsonObj.myArray.push(ure);
+    jsonObj.myArray.push(crea);
+    jsonObj.myArray.push(sod);
+    jsonObj.myArray.push(uri);
+    jsonObj.myArray.push(pot);
+    jsonObj.myArray.push(pho);
+    jsonObj.myArray.push(bil);
+    jsonObj.myArray.push(alk);
+    jsonObj.myArray.push(pro);
+    jsonObj.myArray.push(alb);
+    jsonObj.myArray.push(gam);
+    jsonObj.myArray.push(glo);
+
+    $(this).parent().find("input").filter(function() {
+            this.value= "";
+        });
+    $.ajax({
+    type:"post",
+    url:"/storedata",
+    dataType: 'json',
+        data: JSON.stringify(jsonObj),
+        contentType: 'application/json',
+        success: function(data){
+           alert("success");
+           alert(data);
+    }
+    });
+
+    $("#myModal").modal("show");
+    document.getElementById("txtfname").innerHTML = "Data successfully saved to your database.";
+
+    }
+
+
+
+    });
+
+
+
+    </script>

@@ -22,7 +22,7 @@ function populateTable() {
 
     // jQuery AJAX call for JSON
 
-    $.getJSON( '/download', function( data ) { // get files as data
+    $.getJSON( '/download', function( data) { // get files as data
 
 
 
@@ -37,7 +37,10 @@ function populateTable() {
             }
 
 // this all added into the tableContent variable
-
+if(data.length!=0){
+        document.getElementById('download').style.display = "block";
+        document.getElementById('heading').innerHTML = "<style: font-size:40px>" + "Table of Saved Files" + "</style>" +  "</br>";
+      }
         $('#download table tbody').html(tableContent); // add into the table
 
     });

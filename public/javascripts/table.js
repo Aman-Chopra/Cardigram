@@ -12,7 +12,7 @@ var filtersConfig = {
   highlight_keywords: true,
   no_results_message: true,
   col_types: [
-    'String', 'Number',
+    'Number', 'Number', 'Number',
     'Number', 'Number', 'Number'
   ],
   custom_options: {
@@ -33,7 +33,7 @@ var filtersConfig = {
   },
   col_widths: [
     '150px', '150px', '150px',
-    '150px', '150px'
+    '150px', '150px', '150px'
   ],
   extensions: [{
     name: 'sort',

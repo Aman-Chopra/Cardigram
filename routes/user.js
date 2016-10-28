@@ -5,6 +5,7 @@ var passport = require('passport');
 var csrf = require('csurf');
 var csrfProtection = csrf();//using protection as a middleware
 router.use(csrfProtection);//All the routers are protected using this csrf protection
+var fs = require("fs");
 var Order = require('../models/order');
 var Cart = require('../models/cart');
 
@@ -22,16 +23,18 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
     });
 });
 
-router.get('/logout', isLoggedIn, function (req, res, next) {
-    req.logout();//A method of passport authenticator
-    res.redirect('/');
+router.get('/logout', function(req,res){
+ req.logOut();
+ req.session.destroy(function (err) {
+        res.redirect('/'); //Inside a callback… bulletproof!
+    });
 });
 
 
 
 router.get('/signup', function(req, res, next) {
   var messages = req.flash('error');//messsages like 'Email' already in use are stored in error of flash
-  res.render('user/signup', { csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
+  res.render('user/signup', { title: 'SIGNUP', csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
 });
 
 
@@ -44,15 +47,19 @@ router.post('/signup', passport.authenticate('local.signup', {
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {
+      var dir = './public/uploads/'+req.user.email;
+      if (!fs.existsSync(dir)){
+          fs.mkdirSync(dir);
+        }
         res.redirect('/dashboard');
-    }
+      }
 });
 
 
 
 router.get('/signin', function(req, res, next) {
   var messages = req.flash('error');//messsages like 'Email' already in use are stored in error of flash
-  res.render('user/signin', { csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
+  res.render('user/signin', { title: 'SIGNIN', csrfToken: req.csrfToken() , messages: messages, hasErrors: messages.length > 0});//inbuilt method of csrf package to provide token as to which browser is accessing the server.
 });
 
 router.post('/signin', passport.authenticate('local.signin', {

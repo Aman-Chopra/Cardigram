@@ -19,17 +19,14 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Name}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="/userprofile"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -43,7 +40,7 @@
                   <li>
                       <a href="/getcharts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                   </li>
-                  <li class="active">
+                  <li  class="active">
                       <a href="/table"><i class="fa fa-fw fa-table"></i> Tables</a>
                   </li>
                   <li>
@@ -73,7 +70,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="/dashboard"><b>Dashboard</b></a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html"><b>Dashboard</b></a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Tables
@@ -81,33 +78,39 @@
                         </ol>
                     </div>
                 </div>
+                <br>
+
+
+
+                {{# if Length}}
 <div class="row">
         <div class="col-lg-12">
-              <h2>Customer data.</h2>
+              <h2>Haematology.</h2>
 <div class="table-responsive">
 <table id="demo" class="table table-condensed table-hover table-bordered sortable">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Value1</th>
-            <th>Value2</th>
-            <th>Value3</th>
-            <th>Value4</th>
+            <th>Haemoglobin</th>
+            <th>Leucocyte</th>
+            <th>Neutrophils</th>
+            <th>Lymphocytes</th>
+            <th>Eosinophils</th>
+            <th>Monocytes</th>
         </tr>
     </thead>
     <tbody>
+      {{# each haematology}}
+      {{# each this}}
         <tr>
-          {{# each customers  }}
-            {{# each this}}
-            <td>{{this._id}}</td>
-            <td>{{this.Name}}</td>
-            <td>{{this.Value1}}</td>
-            <td>{{this.Value2}}</td>
-            <td>{{this.Value3}}</td>
-            <td>{{this.Value4}}</td>
+
+            <td>{{this.Haemoglobin}}</td>
+            <td>{{this.Leucocyte}}</td>
+            <td>{{this.Neutrophils}}</td>
+            <td>{{this.Lymphocytes}}</td>
+            <td>{{this.Eosinophils}}</td>
+            <td>{{this.Monocytes}}</td>
         </tr>
-        {{/each}}
+          {{/each}}
       {{/each}}
     </tbody>
 
@@ -117,6 +120,129 @@
 </div>
 </div>
 </div>
+
+<br>
+<div class="row">
+        <div class="col-lg-12">
+              <h2>Lipid Profile.</h2>
+<div class="table-responsive">
+<table id="demo1" class="table table-condensed table-hover table-bordered sortable">
+    <thead>
+        <tr>
+            <th>Cholesterol</th>
+            <th>Triglycerides</th>
+            <th>HDL Cholesterol</th>
+            <th>LDL Cholesterol</th>
+            <th>VLDL Cholesterol</th>
+            <th>LDL/HDL Cholesterol</th>
+        </tr>
+    </thead>
+    <tbody>
+      {{# each haematology}}
+      {{# each this}}
+        <tr>
+
+            <td>{{this.Cholesterol}}</td>
+            <td>{{this.Triglycerides}}</td>
+            <td>{{this.HDLCholesterol}}</td>
+            <td>{{this.LDLCholesterol}}</td>
+            <td>{{this.VLDLCholesterol}}</td>
+            <td>{{this.LDLHDLCholesterol}}</td>
+        </tr>
+          {{/each}}
+      {{/each}}
+    </tbody>
+
+</table>
+  <button type="button" name="OK" class="ok btn btn-warning button">Generate charts</button>
+
+</div>
+</div>
+</div>
+
+<br>
+<div class="row">
+        <div class="col-lg-12">
+              <h2>Kidney functioning test.</h2>
+<div class="table-responsive">
+<table id="demo2" class="table table-condensed table-hover table-bordered sortable">
+    <thead>
+        <tr>
+            <th>Urea</th>
+            <th>Creatinine</th>
+            <th>Sodium</th>
+            <th>Uric Acid</th>
+            <th>Potassium</th>
+            <th>Phosphorous</th>
+        </tr>
+    </thead>
+    <tbody>
+      {{# each haematology}}
+      {{# each this}}
+        <tr>
+
+            <td>{{this.Urea}}</td>
+            <td>{{this.Creatinine}}</td>
+            <td>{{this.Sodium}}</td>
+            <td>{{this.Uric}}</td>
+            <td>{{this.Potassium}}</td>
+            <td>{{this.Phosphorous}}</td>
+        </tr>
+          {{/each}}
+      {{/each}}
+    </tbody>
+
+</table>
+  <button type="button" name="OK" class="ok btn btn-warning button">Generate charts</button>
+
+</div>
+</div>
+</div>
+
+
+
+<br>
+<div class="row">
+        <div class="col-lg-12">
+              <h2>Liver functioning test.</h2>
+<div class="table-responsive">
+<table id="demo3" class="table table-condensed table-hover table-bordered sortable">
+    <thead>
+        <tr>
+            <th>Bilirubin</th>
+            <th>Alkaline Phosphate</th>
+            <th>Protein</th>
+            <th>Albumin</th>
+            <th>Gamma</th>
+            <th>Globulin</th>
+        </tr>
+    </thead>
+    <tbody>
+      {{# each haematology}}
+      {{# each this}}
+        <tr>
+
+            <td>{{this.Bilirubin}}</td>
+            <td>{{this.Alkaline}}</td>
+            <td>{{this.Protein}}</td>
+            <td>{{this.Albumin}}</td>
+            <td>{{this.Gamma}}</td>
+            <td>{{this.Globulin}}</td>
+        </tr>
+          {{/each}}
+      {{/each}}
+    </tbody>
+
+</table>
+  <button type="button" name="OK" class="ok btn btn-warning button">Generate charts</button>
+
+</div>
+</div>
+</div>
+
+
+
+
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -136,6 +262,22 @@
 <br>
 <div id="chartDiv"  style="display:none;" class="ct-chart4"></div>
 
+
+{{ else }}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">No data to show.<br></h2>
+        </div>
+    </div>
+{{/if}}
+
+
+
+
+
+
+
+
 </div>
             <!-- /.container-fluid -->
 
@@ -143,7 +285,7 @@
         <!-- /#page-wrapper -->
 
     </div>
-
+    <script type="text/javascript" src="javascripts/charts.js"></script>
     <script>
     /*$('table tbody tr  td').on('click',function(){
         $("#myModal").modal("show");
@@ -153,7 +295,9 @@
     });*/
     $("#demo tr").click(function(){
    $(this).toggleClass('selected');
-   var value=$(this).find('td:first').html();
+   var value=$(this).find('td:first').text();
+   //var value2 =$(this).find('td:nth-child(2)').text();
+   var value3 =$(this).find('td:nth-child(2)').text();
 });
 
 $('#closebutton').on('click', function(e) {
@@ -163,8 +307,16 @@ $('.ok').on('click', function(e){
   var jsonObj = {
     selected : []
 };
+
+var temp = {
+labels: [],
+series : [[]]
+}
+
     $("#demo tr.selected").each(function(){
-        jsonObj.selected.push($('td:first', this).html());
+        jsonObj.selected.push($('td:first', this).text());
+        //temp.labels.push($('td:nth-child(2)', this).text());
+        temp.series[0].push($('td:nth-child(2)', this).text());
     });
     if(jsonObj.selected.length==0){
       $("#myModal").modal("show");
@@ -176,7 +328,9 @@ $('.ok').on('click', function(e){
   }
   else{
     $('tr').removeClass("selected");
-    $.ajax({
+    document.getElementById('chartDiv').style.display = "block";
+    drawChart4(temp);
+    /*$.ajax({
     type:"post",
     url:"/name",
     dataType: 'json',
@@ -188,11 +342,11 @@ $('.ok').on('click', function(e){
     }
 });
 jsonObj.selected=[];
-    rendergraph();
+    rendergraph();*/
   }
 });
     </script>
-    <script type="text/javascript" src="javascripts/charts.js"></script>
+
     <script>
     function rendergraph() {
     document.getElementById('chartDiv').style.display = "block";
@@ -211,3 +365,6 @@ jsonObj.selected=[];
     }
     </script>
 <script type="text/javascript" src="javascripts/table.js"></script>
+<script type="text/javascript" src="javascripts/table1.js"></script>
+<script type="text/javascript" src="javascripts/table2.js"></script>
+<script type="text/javascript" src="javascripts/table3.js"></script>
