@@ -172,24 +172,148 @@ router.get('/charts', isLoggedIn,function (req, res, next) {
         patientChunks.push(docs.slice(i,i+1));
       }
       }
-      console.log(patientChunks);
-      console.log(patientChunks.length);
       var jsonObj = {
-        data : []
+        data : [],
+        data1 : [],
+        data2 : [],
+        data3 : [],
+        data4 : [],
+        data5 : [],
+        data6 : [],
+        data7 : []
+
     };
     var temp = {
     labels : [],
     series : [[]]
   }
-
+      for(var i =0;i<3;i++)
+      temp.series[i] = new Array();
       for(var i = 0; i < patientChunks.length; i++) {
           temp.labels.push(i+1);
-          var temp1 = patientChunks[i][0]["Haemoglobin"];
+          var temp1 = patientChunks[i][0]["Leucocyte"];
+          var a = 4000;
+          var b = 11000;
           temp.series[0].push(temp1);
+          temp.series[1].push(a);
+          temp.series[2].push(b);
           console.log(temp);
           jsonObj.data.push(temp);
 
       }
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+    for(var i =0;i<2;i++)
+    temp.series[i] = new Array();
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Haemoglobin"];
+          temp.series[0].push(temp1);
+          var a = 14;
+          temp.series[1].push(a);
+          console.log(temp);
+          jsonObj.data1.push(temp);
+
+      }
+
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+    //for(var i =0;i<2;i++)
+    //temp.series[i] = new Array();
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Triglycerides"];
+          temp.series[0].push(temp1);
+          console.log(temp);
+          jsonObj.data2.push(temp);
+
+      }
+
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Cholesterol"];
+          temp.series[0].push(temp1);
+          console.log(temp);
+          jsonObj.data3.push(temp);
+
+      }
+
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Urea"];
+          temp.series[0].push(temp1);
+          console.log(temp);
+          jsonObj.data4.push(temp);
+
+      }
+
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+    for(var i =0;i<2;i++)
+    temp.series[i] = new Array();
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Sodium"];
+          temp.series[0].push(temp1);
+          var a = 145;
+          temp.series[1].push(a);
+          console.log(temp);
+          jsonObj.data5.push(temp);
+
+      }
+
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Protein"];
+          temp.series[0].push(temp1);
+          console.log(temp);
+          jsonObj.data6.push(temp);
+
+      }
+
+      var temp = {
+      labels : [],
+      series : [[]]
+    }
+
+
+      for(var i = 0; i < patientChunks.length; i++) {
+          temp.labels.push(i+1);
+          var temp1 = patientChunks[i][0]["Alkaline"];
+          temp.series[0].push(temp1);
+          console.log(temp);
+          jsonObj.data7.push(temp);
+
+      }
+
+
       console.log(jsonObj);
       var toBeSentData = JSON.stringify(jsonObj);
       res.writeHead(200, {"Content-Type": "text/plain"});

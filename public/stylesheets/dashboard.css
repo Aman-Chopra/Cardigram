@@ -17,7 +17,7 @@ body {
     }
 }
 
-a { color: inherit; } 
+a { color: inherit; }
 
 #wrapper {
     padding-left: 0;
@@ -250,6 +250,46 @@ ul.alert-dropdown {
 }
 
 .ct-chart4{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart5{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart6{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart7{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart8{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart9{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart10{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart11{
+    height: 350px;
+    /*stroke-linecap: round;*/
+}
+
+.ct-chart12{
     height: 350px;
     /*stroke-linecap: round;*/
 }

@@ -120,6 +120,7 @@
 
 
 <section id="haematology">
+  <h2>Haematology.</h2>
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -127,7 +128,7 @@
   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne1">
     <div class="row">
         <div class="col-lg-6">
-            <p class="lead"><i class="fa fa-pie-chart"></i>  Number of customers per month.</p>
+            <p class="lead"><i class="fa fa-area-chart"></i>  Leucocyte.</p>
         </div>
 
     </div>
@@ -142,11 +143,7 @@
 </div>
 </div>
 </div>
-</section>
 
-<br>
-
-<section id="lipid">
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -154,7 +151,7 @@
   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">
     <div class="row">
         <div class="col-lg-6">
-            <p class="lead"><i class="fa fa-pie-chart"></i>  Number of customers per month.</p>
+            <p class="lead"><i class="fa fa-bar-chart"></i> Haemoglobin.</p>
         </div>
 
     </div>
@@ -171,14 +168,10 @@
 </div>
 </section>
 
-
-
-
 <br>
 
-
-<!--<div class="ct-chart3"></div>-->
-<section id="kidney">
+<section id="lipid">
+  <h2>Lipid Profile.</h2>
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -186,7 +179,7 @@
   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3">
     <div class="row">
         <div class="col-lg-6">
-            <p class="lead"><i class="fa fa-pie-chart"></i>  Number of customers per month.</p>
+            <p class="lead"><i class="fa fa-line-chart"></i>  Triglycerides.</p>
         </div>
 
     </div>
@@ -201,12 +194,8 @@
 </div>
 </div>
 </div>
-</section>
 
 
-<br>
-
-<section id="liver">
 <div class="panel-group" id="accordion">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -214,7 +203,7 @@
   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne4">
     <div class="row">
         <div class="col-lg-6">
-            <p class="lead"><i class="fa fa-area-chart"></i>  Number of customers per month.</p>
+            <p class="lead"><i class="fa fa-area-chart"></i>  Cholestrol.</p>
         </div>
 
     </div>
@@ -225,6 +214,115 @@
 <div class="panel-body">
 
   <div class="ct-chart4"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<br>
+
+
+<!--<div class="ct-chart3"></div>-->
+<section id="kidney">
+  <h2>Kidney Profile.</h2>
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne5">
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="lead"><i class="fa fa-bar-chart"></i>  Urea.</p>
+        </div>
+
+    </div>
+  </a>
+</h4>
+</div>
+<div id="collapseOne5" class="panel-collapse collapse in">
+<div class="panel-body">
+
+  <div class="ct-chart5"></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne6">
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="lead"><i class="fa fa-bar-chart"></i>  Sodium.</p>
+        </div>
+
+    </div>
+  </a>
+</h4>
+</div>
+<div id="collapseOne6" class="panel-collapse collapse in">
+<div class="panel-body">
+
+  <div class="ct-chart6"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<br>
+
+<section id="liver">
+  <h2>Liver Profile.</h2>
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne7">
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="lead"><i class="fa fa-line-chart"></i>  Potein.</p>
+        </div>
+
+    </div>
+  </a>
+</h4>
+</div>
+<div id="collapseOne7" class="panel-collapse collapse in">
+<div class="panel-body">
+
+  <div class="ct-chart7"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne8">
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="lead"><i class="fa fa-area-chart"></i>  Alkaline.</p>
+        </div>
+
+    </div>
+  </a>
+</h4>
+</div>
+<div id="collapseOne8" class="panel-collapse collapse in">
+<div class="panel-body">
+
+  <div class="ct-chart8"></div>
 </div>
 </div>
 </div>
@@ -261,24 +359,21 @@ xmlhttp.responseType = 'json';
 xmlhttp.onreadystatechange = function() {
 if(xmlhttp.status == 200) {
 var data = xmlhttp.response;
-console.log(data.data[0]);
 drawChart(data.data[0]);
-drawChart1(data.data[0]);
-drawChart2(data.data[0]);
-drawChart3(data.data[0]);
+drawChart1(data.data1[0]);
+drawChart2(data.data2[0]);
+drawChart3(data.data3[0]);
+drawChart4(data.data4[0]);
+drawChart5(data.data5[0]);
+drawChart6(data.data6[0]);
+drawChart7(data.data7[0]);
 }
 }
 xmlhttp.send();
 console.log("Request was sent to server");
 }
 </script>
-<script>
-$("#button3").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#features").offset().top
-    }, 2000);
-});
-</script>
+
 
 <script>
 $("#button1").click(function() {
@@ -292,9 +387,12 @@ $("#button2").click(function() {
     }, 2000);
 });
 $("#button3").click(function() {
+  var nav = $('#kidney');
+    if (nav.length) {
     $('html, body').animate({
         scrollTop: $("#kidney").offset().top
     }, 2000);
+  }
 });
 $("#button4").click(function() {
     $('html, body').animate({
