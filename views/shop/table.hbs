@@ -343,7 +343,7 @@ var temp = {
 labels: [],
 series : [[]]
 }
-else if ($("input[name=optradio]:checked").length == 0) {
+if ($("input[name=optradio]:checked").length == 0) {
   // Do your stuff here
   $("#myModal").modal("show");
   document.getElementById("txtfname").innerHTML = "Please select a radio button.";
